@@ -13,6 +13,17 @@ loadData();
 
 function loadData() {
 
+    // For test.csv
+    d3.json("data/test.csv", function(error, jsonData) {
+        if (!error) {
+            allData = jsonData;
+
+            console.log(allData);
+
+
+        }
+    });
+
 }
 
 function createVis() {

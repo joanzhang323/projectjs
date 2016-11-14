@@ -3,12 +3,12 @@
  */
 
 /*
- *  AggregateChart - Object constructor function
+ *  NAME - Object constructor function
  *  @param _parentElement   -- HTML element in which to draw the visualization
  *  @param _data            -- ???
  */
 
-AggregateChart = function(_parentElement, _data) {
+NAME = function(_parentElement, _data) {
 
     this.parentElement = _parentElement;
     this.data = _data;
@@ -21,7 +21,7 @@ AggregateChart = function(_parentElement, _data) {
  *  Initialize visualization (static content, e.g. SVG area or axes)
  */
 
-AggregateChart.prototype.initVis = function() {
+NAME.prototype.initVis = function() {
     var vis = this;
 
     vis.wrangleData();
@@ -32,7 +32,7 @@ AggregateChart.prototype.initVis = function() {
  *  Data wrangling
  */
 
-AggregateChart.prototype.wrangleData = function() {
+NAME.prototype.wrangleData = function() {
     var vis = this;
 
     // Currently no data wrangling/filtering needed
@@ -48,7 +48,7 @@ AggregateChart.prototype.wrangleData = function() {
  *  The drawing function
  */
 
-AggregateChart.prototype.updateVis = function() {
+NAME.prototype.updateVis = function() {
     var vis = this;
 
 }
