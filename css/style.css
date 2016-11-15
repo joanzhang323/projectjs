@@ -1,0 +1,9 @@
+/*
+ * Aggregate Chart
+ */
+
+#aggregateChartBorder {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+}

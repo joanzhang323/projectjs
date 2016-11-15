@@ -14,21 +14,27 @@ loadData();
 function loadData() {
 
     // For test.csv
-    d3.json("data/test.csv", function(error, jsonData) {
+    d3.csv("data/DataJS.csv", function(error, csvData) {
         if (!error) {
-            allData = jsonData;
+            allData = csvData;
+            //console.log(allData);
 
-            console.log(allData);
+            // Convert numeric values to 'numbers'
+            allData.forEach(function(d) {
+                for (var variable in d) { d[variable] = +d[variable];}
+            });
+            //console.log(allData);
 
 
+
+            createVis();
         }
     });
-
 }
 
 function createVis() {
 
     // Instantiate Visualization
-    aggregateChart = new StationMap("station-map", allData, [42.360082, -71.058880]);
+    aggregateChart = new AggregateChart("aggregate-chart", allData);
 
 }
