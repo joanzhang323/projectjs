@@ -12,9 +12,47 @@
 </head>
 <body>
 
-    <!-- Visualization placeholders -->
-    <div id="aggregate-chart"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Filter for Aggregate Chart -->
+            <div class="col-md-2" id="aggregateFilter">
 
+                <label for="genderFilter">Gender</label>
+                <form id="genderFilter">
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="1">Male</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="2">Female</label>
+                    </div>
+                </form>
+
+                <label for="ageFilter">Age</label>
+                <select class="form-control" id="ageFilter" multiple>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22-23</option>
+                    <option>24-25</option>
+                    <option>26-29</option>
+                    <option>30-34</option>
+                    <option>35-49</option>
+                    <option>50-64</option>
+                    <option>64+</option>
+                </select>
+
+            </div>
+            <!-- Visualization placeholder -->
+            <div class="col-md-10" id="aggregate-chart"></div>
+        </div>
+    </div>
 
 
 

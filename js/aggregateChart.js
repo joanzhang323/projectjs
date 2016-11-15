@@ -9,11 +9,12 @@
  *  @param _data            -- ???
  */
 
-AggregateChart = function(_parentElement, _data) {
+AggregateChart = function(_parentElement, _data, _metaData) {
 
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = _data;
+    this.metaData = _metaData;
 
     this.initVis();
 }
@@ -26,7 +27,7 @@ AggregateChart = function(_parentElement, _data) {
 AggregateChart.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { top: 10, right: 10, bottom: 10, left: 200 };
+    vis.margin = { top: 10, right: 10, bottom: 10, left: 10 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 500 - vis.margin.top - vis.margin.bottom;
@@ -38,13 +39,12 @@ AggregateChart.prototype.initVis = function() {
         .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-    /*
-    // Add the border of chart
-    vis.svg.append("rect")
-        .attr("id", "aggregateChartBorder")
-        .attr("width", vis.height)
-        .attr("height", vis.height);
-    */
+
+    // Filter data for Asians
+    vis.displayData = vis.data.filter(function (person) {
+        return person.NEWRACE2 == 5;
+    });
+
 
     vis.wrangleData();
 }
@@ -56,9 +56,6 @@ AggregateChart.prototype.initVis = function() {
 
 AggregateChart.prototype.wrangleData = function() {
     var vis = this;
-
-    // Filter for Asians
-
 
     // Update the visualization
     vis.updateVis();
@@ -81,12 +78,31 @@ AggregateChart.prototype.updateVis = function() {
 
     circles.enter().append("circle")
         .attr("class", "aggregateCircles")
-        .attr("cy", function (d) { return ((d.CASEID - 1)%circlesPerRow)*2*radius + radius; })
-        .attr("cx", function (d) { return Math.floor((d.CASEID - 1)/circlesPerRow)*2*radius + radius; })
+        .attr("cy", function (d, index) { return (index%circlesPerRow)*2*radius + radius; })
+        .attr("cx", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
         .attr("r", radius)
-        .attr("fill", "gray");
+        .attr("fill", "gray")
+        .attr("opacity", 0.5);
 
     circles.exit().remove();
 
+    // User filtering
+    $("#ageFilter").change(function() {
+        $("select option:selected").each(function(d) {
+            var option = $(this).text();
+
+            console.log(option);
+
+            circles.attr("fill", function(person) {
+                var age = person["AGE2"];
+
+                if (vis.metaData["AGE2"]["code"][age] == option) {
+                    return "green";
+                }
+            })
+        });
+    });
+
 
 }
+

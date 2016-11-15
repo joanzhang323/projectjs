@@ -7,34 +7,28 @@ var allData = [];
 // Variable for the visualization instance
 var aggregateChart;
 
-// Start application by loading the data
-loadData();
+
+// Load data asynchronously
+queue()
+    .defer(d3.csv,"data/DataJS.csv")
+    .defer(d3.json,"data/code.json")
+    .await(createVis);
 
 
-function loadData() {
+function createVis(error, mainData, metaData) {
+    if (error) { console.log(error); }
 
-    // For test.csv
-    d3.csv("data/DataJS.csv", function(error, csvData) {
-        if (!error) {
-            allData = csvData;
-            //console.log(allData);
+    allData = mainData;
 
-            // Convert numeric values to 'numbers'
-            allData.forEach(function(d) {
-                for (var variable in d) { d[variable] = +d[variable];}
-            });
-            //console.log(allData);
-
-
-
-            createVis();
-        }
+    // Convert numeric values to 'numbers'
+    allData.forEach(function(d) {
+        for (var variable in d) { d[variable] = +d[variable];}
     });
-}
+    //console.log(allData);
 
-function createVis() {
 
     // Instantiate Visualization
-    aggregateChart = new AggregateChart("aggregate-chart", allData);
+    aggregateChart = new AggregateChart("aggregate-chart", allData, metaData);
 
 }
+
