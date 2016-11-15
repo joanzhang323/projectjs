@@ -26,7 +26,7 @@ AggregateChart = function(_parentElement, _data) {
 AggregateChart.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { top: 20, right: 20, bottom: 20, left: 200 };
+    vis.margin = { top: 10, right: 10, bottom: 10, left: 200 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 500 - vis.margin.top - vis.margin.bottom;
@@ -38,11 +38,13 @@ AggregateChart.prototype.initVis = function() {
         .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+    /*
     // Add the border of chart
     vis.svg.append("rect")
         .attr("id", "aggregateChartBorder")
         .attr("width", vis.height)
         .attr("height", vis.height);
+    */
 
     vis.wrangleData();
 }
@@ -74,13 +76,13 @@ AggregateChart.prototype.updateVis = function() {
     // Add circles to chart
     var circles = vis.svg.selectAll(".aggregateCircles").data(vis.displayData);
 
-    var circlesPerRow = Math.sqrt(vis.displayData.length);
+    var circlesPerRow = Math.ceil(Math.sqrt(vis.displayData.length));
     var radius = vis.height/(circlesPerRow*2);
 
     circles.enter().append("circle")
         .attr("class", "aggregateCircles")
-        .attr("cx", function (d) { return ((d.CASEID - 1)%circlesPerRow)*2*radius + radius; })
-        .attr("cy", function (d) { return ((d.CASEID - 1)/circlesPerRow)*2*radius + radius; })
+        .attr("cy", function (d) { return ((d.CASEID - 1)%circlesPerRow)*2*radius + radius; })
+        .attr("cx", function (d) { return Math.floor((d.CASEID - 1)/circlesPerRow)*2*radius + radius; })
         .attr("r", radius)
         .attr("fill", "gray");
 
