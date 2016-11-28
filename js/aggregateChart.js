@@ -30,7 +30,7 @@ AggregateChart.prototype.initVis = function() {
     vis.margin = { top: 10, right: 10, bottom: 10, left: 10 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
-        vis.height = 500 - vis.margin.top - vis.margin.bottom;
+        vis.height = 525 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -38,13 +38,6 @@ AggregateChart.prototype.initVis = function() {
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
         .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
-
-
-    // Filter data for Asians
-    vis.displayData = vis.data.filter(function (person) {
-        return person.NEWRACE2 == 5;
-    });
-
 
     vis.wrangleData();
 }
@@ -56,6 +49,18 @@ AggregateChart.prototype.initVis = function() {
 
 AggregateChart.prototype.wrangleData = function() {
     var vis = this;
+
+
+    /*
+     // Filter data for Asians
+     vis.displayData = vis.data.filter(function (person) {
+     return person.NEWRACE2 == 5;
+     });
+     */
+
+
+    // Sort data for mental illness - yes mental illness to no mental illness
+    vis.displayData.sort(function (a,b) { return b.AMIYR_U - a.AMIYR_U });
 
     // Update the visualization
     vis.updateVis();
@@ -73,36 +78,50 @@ AggregateChart.prototype.updateVis = function() {
     // Add circles to chart
     var circles = vis.svg.selectAll(".aggregateCircles").data(vis.displayData);
 
-    var circlesPerRow = Math.ceil(Math.sqrt(vis.displayData.length));
-    var radius = vis.height/(circlesPerRow*2);
+    var circlesPerRow = 10;
+    var radius = 5;
 
     circles.enter().append("circle")
         .attr("class", "aggregateCircles")
-        .attr("cy", function (d, index) { return (index%circlesPerRow)*2*radius + radius; })
-        .attr("cx", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
+        .attr("cx", function (d, index) { return (index%circlesPerRow)*2*radius + radius; })
+        .attr("cy", function (d, index) { return vis.height - Math.floor(index/circlesPerRow)*2*radius + radius; })
         .attr("r", radius)
-        .attr("fill", "gray")
+        .attr("fill", function (person) { if (person.AMIYR_U == 1) { return "red"} else {return "gray"} })
         .attr("opacity", 0.5);
 
     circles.exit().remove();
 
-    // User filtering
-    $("#ageFilter").change(function() {
-        $("select option:selected").each(function(d) {
-            var option = $(this).text();
+}
 
-            console.log(option);
+AggregateChart.prototype.onSelectionChange = function (checked) {
+    var vis = this;
 
-            circles.attr("fill", function(person) {
-                var age = person["AGE2"];
 
-                if (vis.metaData["AGE2"]["code"][age] == option) {
-                    return "green";
-                }
-            })
-        });
+    // Filter data for checked selections
+    vis.displayData = vis.data.filter(function(person) {
+        var gender = false,
+            age = false;
+
+        if (checked.hasOwnProperty("genderCheckBox")) {
+            checked.genderCheckBox.forEach(function (d) {
+                gender = (gender || (person.IRSEX == d));
+            });
+        } else {
+            gender = true;
+        }
+
+        if (checked.hasOwnProperty("ageCheckBox")) {
+            checked.ageCheckBox.forEach(function (d) {
+                age = (age || (person.AGE2 == d));
+            });
+        } else {
+            age = true;
+        }
+
+        return age && gender;
     });
 
 
+    vis.wrangleData();
 }
 

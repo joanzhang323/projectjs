@@ -15,38 +15,22 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Filter for Aggregate Chart -->
-            <div class="col-md-2" id="aggregateFilter">
+            <div class="col-md-2" id="filters">
 
-                <label for="genderFilter">Gender</label>
-                <form id="genderFilter">
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="1">Male</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="2">Female</label>
-                    </div>
-                </form>
+                <div class="checkbox" id="ageFilter" onchange="selectionChanged()">
+                    Age:<br>
+                    <label><input type="checkbox" name="18" class="ageCheckBox" value="7" />18</label><br>
+                    <label><input type="checkbox" name="19" class="ageCheckBox" value="8" />19</label><br>
+                    <label><input type="checkbox" name="20" class="ageCheckBox" value="9" />20</label><br>
+                    <label><input type="checkbox" name="21" class="ageCheckBox" value="10" />21</label><br>
+                    <label><input type="checkbox" name="22-23" class="ageCheckBox" value="11" />22-23</label>
+                </div>
 
-                <label for="ageFilter">Age</label>
-                <select class="form-control" id="ageFilter" multiple>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22-23</option>
-                    <option>24-25</option>
-                    <option>26-29</option>
-                    <option>30-34</option>
-                    <option>35-49</option>
-                    <option>50-64</option>
-                    <option>64+</option>
-                </select>
+                <div class="checkbox" id="genderFilter" onchange="selectionChanged()">
+                    Gender:<br>
+                    <label><input type="checkbox" name="male" class="genderCheckBox" value="1" />Male</label><br>
+                    <label><input type="checkbox" name="female" class="genderCheckBox" value="2" />Female</label><br>
+                </div>
 
             </div>
             <!-- Visualization placeholder -->
