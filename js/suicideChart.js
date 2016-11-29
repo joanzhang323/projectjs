@@ -66,16 +66,8 @@ SuicideChart.prototype.wrangleData = function() {
         return person.MHSUITRY == 1;
     });
 
-
-
     // Sort data for mental illness - yes mental illness to no mental illness
-    vis.displayData_SuicideThink.sort(function (a,b) { return b.MHSUIPLN - a.MHSUIPLN });
-
-    // Sort data for mental illness - yes mental illness to no mental illness
-    //vis.displayData_SuicideThink.sort(function (a,b) { return b.MHSUITRY - a.MHSUITRY });
-
-    // Currently no data wrangling/filtering needed
-    // vis.displayData = vis.data;
+    vis.displayData_SuicideAttempt.sort(function (a,b) { return b.MHSUIPLN - a.MHSUIPLN });
 
     // Update the visualization
     vis.updateVis();
