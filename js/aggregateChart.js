@@ -59,11 +59,11 @@ AggregateChart.prototype.initVis = function() {
         .tickValues([100,200,300,400,500]);
 
     vis.svg.append("g")
-        .attr("class", "y-axis axis")
+        .attr("class", "y-axisAgg axis")
         .call(yAxis);
 
     vis.svg.append("text")
-        .attr("class", "axis-title")
+        .attr("class", "axis-title-Agg")
         .attr("x", 0)
         .attr("y", 0)
         .style("text-anchor", "middle")
@@ -85,7 +85,7 @@ AggregateChart.prototype.initVis = function() {
         .tickFormat(d3.format(".0%"));
 
     vis.svg.append("g")
-        .attr("class", "x-axis axis")
+        .attr("class", "x-axisAgg axis")
         .attr("transform", "translate(0," + vis.height + ")")
         .call(xAxis);
 
