@@ -72,5 +72,11 @@ function selectionChanged () {
 
     // Update visualizations
     aggregateChart.onSelectionChange(checked);
+    individualChart.onSelectionChange(checked);
 
+}
+
+function intervene (value) {
+
+    suicideChart.onSelectionChange(value);
 }
