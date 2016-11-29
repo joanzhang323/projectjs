@@ -88,3 +88,8 @@ function selectionChanged () {
     individualChart.onSelectionChange(checked);
 
 }
+
+function intervene (value) {
+
+    suicideChart.onSelectionChange(value);
+}
