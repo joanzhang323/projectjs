@@ -6,6 +6,9 @@ var allData = [];
 
 // Variable for the visualization instance
 var aggregateChart;
+var individualChart;
+var physicalChart;
+var suicideChart;
 
 
 // Load data asynchronously
@@ -41,6 +44,9 @@ function createVis(error, mainData, metaData) {
 
     // Instantiate Visualization
     aggregateChart = new AggregateChart("aggregate-chart", allData, metaData);
+    individualChart= new IndividualChart("individual-chart",allData,metaData);
+    physicalChart= new PhysicalChart("physical-chart",allData,metaData);
+    suicideChart= new SuicideChart("suicide-chart",allData,metaData);
 
 }
 
@@ -69,8 +75,16 @@ function selectionChanged () {
 
     console.log(checked);
 
+    if (checked["genderCheckBox"] == null || (checked["genderCheckBox"][0] == 1 && checked["genderCheckBox"][1] == 2))
+        document.getElementById("individual-image").innerHTML = "Please select one gender for image";
+    else if (checked["genderCheckBox"][0] == 2)
+        document.getElementById("individual-image").innerHTML = '<img src="img/female_student.jpg"/>';
+    else if (checked["genderCheckBox"][0] == 1 && checked["genderCheckBox"][1] != 2)
+        document.getElementById("individual-image").innerHTML = '<img src="img/male_student.jpg"/>';
+
 
     // Update visualizations
     aggregateChart.onSelectionChange(checked);
+    individualChart.onSelectionChange(checked);
 
 }
