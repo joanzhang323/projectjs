@@ -136,62 +136,6 @@ SuicideChart.prototype.updateVis = function() {
         .attr("height",20)
         .attr("fill", "red")
         .attr("opacity", 0.9);
-
-    /*
-    //Compute Prevalence for Depression
-    vis.suicidePlanData = d3.nest()
-        .key(function(d){return d.MHSUIPLN;})
-        .rollup(function(leaves) { return leaves.length; })
-        .entries(vis.displayData);
-
-    console.log(vis.suicidePlanData);
-
-    var suicidePlanPrev = Math.round((vis.suicidePlanData[1].values / vis.displayData.length)*100);
-    console.log(suicidePlanPrev);
-    */
-
-    /*
-
-    //Compute Prevalence for Suicide Attempt
-    vis.suicideAttemptData = d3.nest()
-        .key(function(d){return d.MHSUITRY;})
-        .rollup(function(leaves) { return leaves.length; })
-        .entries(vis.displayData);
-
-    console.log(vis.suicideAttemptData);
-
-    var suicideAttemptCount = vis.suicideAttemptData[1].values;
-    console.log(suicideAttemptCount);
-
-
-
-    var x_labelPadding = 80;
-    var y_labelPadding = 10;
-
-    var label = vis.svg.selectAll(".bartext")
-        .data(shelter_data);
-
-    label.enter().append("text")
-        .attr("class","bartext")
-        .attr("text-anchor","middle")
-        .attr("fill","black")
-        .attr("x", function(d,index){
-            return shelterScale(d.shelter_type)+ x_labelPadding;
-        })
-
-    label
-        .transition()
-        .duration(400)
-        .attr("y",function(d){
-            return (percentScale(d.percentage)- y_labelPadding);
-        })
-        .text(function(d) {
-            return (d.percentage);
-        });
-
-    label.exit().remove();
-    */
-
 }
 
 SuicideChart.prototype.onSelectionChange = function(button){
