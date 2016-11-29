@@ -99,14 +99,14 @@ SuicideChart.prototype.updateVis = function() {
         .data(vis.displayData_SuicideThink);
 
     var circlesPerRow = 7;
-    var radius = 20;
+    var radius = 10;
 
    vis.cells.enter().append("rect")
         .attr("class", "suicideCells")
         .attr("x", function (d, index) { return (index%circlesPerRow)*2*radius + radius; })
         .attr("y", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
-        .attr("width", 20)
-        .attr("height",20)
+        .attr("width", 10)
+        .attr("height",10)
         .attr("fill", "red")
         .attr("opacity", 0.2);
 
@@ -116,10 +116,10 @@ SuicideChart.prototype.updateVis = function() {
 
     vis.cells2.enter().append("rect")
         .attr("class", "suicideCells2")
-        .attr("x", function (d, index) { return 350+(index%circlesPerRow)*2*radius + radius; })
+        .attr("x", function (d, index) { return 200+(index%circlesPerRow)*2*radius + radius; })
         .attr("y", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
-        .attr("width", 20)
-        .attr("height",20)
+        .attr("width", 10)
+        .attr("height",10)
         .attr("fill", "red")
         .attr("opacity", 0.5);
 
@@ -130,10 +130,10 @@ SuicideChart.prototype.updateVis = function() {
 
     vis.cells3.enter().append("rect")
         .attr("class", "suicideCells3")
-        .attr("x", function (d, index) { return 700+(index%circlesPerRow)*2*radius + radius; })
+        .attr("x", function (d, index) { return 400+(index%circlesPerRow)*2*radius + radius; })
         .attr("y", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
-        .attr("width", 20)
-        .attr("height",20)
+        .attr("width", 10)
+        .attr("height",10)
         .attr("fill", "red")
         .attr("opacity", 0.9);
 }
