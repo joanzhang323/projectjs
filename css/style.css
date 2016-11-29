@@ -1,5 +1,5 @@
 /*
- * Aggregate Chart
+ * General
  */
 body {
     font-family: 'Roboto', sans-serif;
@@ -8,4 +8,25 @@ body {
 img{
     width: 200px;
     margin-left: 30px;
+}
+
+
+/*
+ * Aggregate Chart
+ */
+.y-axisAgg path, .x-axisAgg path {
+    display: none;
+}
+
+.axis-title-Agg {
+    fill: #888;
+    font-size: 11px;
+}
+
+.y-axisAgg {
+    font-size: smaller;
+}
+
+.x-axisAgg {
+    font-size: xx-small;
 }
