@@ -29,7 +29,7 @@ IndividualChart.prototype.initVis = function() {
 
     vis.margin = { top: 10, right: 10, bottom: 50, left: 50 };
 
-    vis.width =600 - vis.margin.left - vis.margin.right,
+    vis.width =$("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
 
