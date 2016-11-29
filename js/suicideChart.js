@@ -27,7 +27,7 @@ SuicideChart =  function(_parentElement, _data, _metaData) {
 SuicideChart.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { top: 50, right: 50, bottom: 50, left: 50 };
+    vis.margin = { top: 10, right: 10, bottom: 30, left: 50 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
         vis.height = 500 - vis.margin.top - vis.margin.bottom;
@@ -42,7 +42,7 @@ SuicideChart.prototype.initVis = function() {
 
     // Filter data for Asians
     vis.displayData = vis.data.filter(function (person) {
-        return person.NEWRACE2 == 5 && (person.MHSUITHK != "-9") && (person.MHSUIPLN != "-9") && (person.MHSUITRY !="-9");
+        return person.NEWRACE2 == 5;
     });
 
     vis.wrangleData();
@@ -55,6 +55,24 @@ SuicideChart.prototype.initVis = function() {
 
 SuicideChart.prototype.wrangleData = function() {
     var vis = this;
+
+    vis.displayData_SuicideThink = vis.data.filter(function (person) {
+        return person.MHSUITHK == 1;
+    });
+    vis.displayData_SuicidePlan = vis.data.filter(function (person) {
+        return person.MHSUIPLN == 1;
+    });
+    vis.displayData_SuicideAttempt = vis.data.filter(function (person) {
+        return person.MHSUITRY == 1;
+    });
+
+
+
+    // Sort data for mental illness - yes mental illness to no mental illness
+    vis.displayData_SuicideThink.sort(function (a,b) { return b.MHSUIPLN - a.MHSUIPLN });
+
+    // Sort data for mental illness - yes mental illness to no mental illness
+    //vis.displayData_SuicideThink.sort(function (a,b) { return b.MHSUITRY - a.MHSUITRY });
 
     // Currently no data wrangling/filtering needed
     // vis.displayData = vis.data;
@@ -72,17 +90,52 @@ SuicideChart.prototype.wrangleData = function() {
 SuicideChart.prototype.updateVis = function() {
     var vis = this;
 
+    console.log(vis.displayData_SuicideThink);
+    console.log(vis.displayData_SuicidePlan);
+    console.log(vis.displayData_SuicideAttempt);
 
-    //Compute Prevalence for Suicidal Thoughts
-    vis.suicideIdData = d3.nest()
-        .key(function(d){return d.MHSUITHK;})
-        .rollup(function(leaves) { return leaves.length; })
-        .entries(vis.displayData);
+    // Add circles to chart
+    vis.cells = vis.svg.selectAll(".suicideCells")
+        .data(vis.displayData_SuicideThink);
 
-    console.log(vis.suicideIdData);
+    var circlesPerRow = 7;
+    var radius = 20;
 
-    var suicideIdPrev = Math.round((vis.suicideIdData[1].values / vis.displayData.length)*100);
-    console.log(suicideIdPrev);
+   vis.cells.enter().append("rect")
+        .attr("class", "suicideCells")
+        .attr("x", function (d, index) { return (index%circlesPerRow)*2*radius + radius; })
+        .attr("y", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
+        .attr("width", 20)
+        .attr("height",20)
+        .attr("fill", "red")
+        .attr("opacity", 0.2);
+
+    // Add circles to chart
+    vis.cells2 = vis.svg.selectAll(".suicideCells2")
+        .data(vis.displayData_SuicidePlan);
+
+    vis.cells2.enter().append("rect")
+        .attr("class", "suicideCells2")
+        .attr("x", function (d, index) { return 350+(index%circlesPerRow)*2*radius + radius; })
+        .attr("y", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
+        .attr("width", 20)
+        .attr("height",20)
+        .attr("fill", "red")
+        .attr("opacity", 0.5);
+
+
+    // Add circles to chart
+    vis.cells3 = vis.svg.selectAll(".suicideCells3")
+        .data(vis.displayData_SuicideAttempt);
+
+    vis.cells3.enter().append("rect")
+        .attr("class", "suicideCells3")
+        .attr("x", function (d, index) { return 700+(index%circlesPerRow)*2*radius + radius; })
+        .attr("y", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
+        .attr("width", 20)
+        .attr("height",20)
+        .attr("fill", "red")
+        .attr("opacity", 0.9);
 
     /*
     //Compute Prevalence for Depression
@@ -97,6 +150,8 @@ SuicideChart.prototype.updateVis = function() {
     console.log(suicidePlanPrev);
     */
 
+    /*
+
     //Compute Prevalence for Suicide Attempt
     vis.suicideAttemptData = d3.nest()
         .key(function(d){return d.MHSUITRY;})
@@ -105,78 +160,10 @@ SuicideChart.prototype.updateVis = function() {
 
     console.log(vis.suicideAttemptData);
 
-    var suicideAttemptPrev = Math.round((vis.suicideAttemptData[1].values / vis.displayData.length)*100);
-    console.log(suicideAttemptPrev);
+    var suicideAttemptCount = vis.suicideAttemptData[1].values;
+    console.log(suicideAttemptCount);
 
 
-    //Bar Chart Data Begins
-    var shelter_data = [
-
-        {
-            shelter_type: "Suicidal Thoughts",
-            percentage: suicideIdPrev
-        },
-        {
-            shelter_type: "Suicidal Plans",
-            percentage: 0
-        },
-        {
-            shelter_type: "Suicidal Attempts",
-            percentage: suicideAttemptPrev
-        }
-
-    ];
-
-    var shelterScale = d3.scale.ordinal()
-        .domain(shelter_data.map(function(d) {
-            return d.shelter_type;
-        }))
-        .rangeRoundBands([0, vis.width], .05);
-
-    var percentScale = d3.scale.linear()
-        .domain([0, 100])
-        .range([vis.height, 0]);
-
-    vis.xAxis = d3.svg.axis()
-        .scale(shelterScale)
-        .orient("bottom")
-
-    vis.yAxis = d3.svg.axis()
-        .scale(percentScale)
-        .orient("left")
-        .tickFormat(function(d) { return d + "%"; });
-
-    vis.svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + vis.height + ")")
-        .call(vis.xAxis);
-
-    vis.svg.append("g")
-        .attr("class", "y axis")
-        .call(vis.yAxis);
-
-
-
-    var bar= vis.svg.selectAll(".bar")
-        .data(shelter_data);
-
-    bar.enter().append("rect")
-        .attr("class","bar")
-        .style("fill", "steelblue")
-        .attr("x", function(d) {
-            return shelterScale(d.shelter_type);
-        })
-        .attr("width", shelterScale.rangeBand());
-
-    bar
-        .transition()
-        .duration(400)
-        .attr("y", function(d) {
-            return percentScale(d.percentage);
-        })
-        .attr("height", function(d) {
-            return vis.height - percentScale(d.percentage);
-        });
 
     var x_labelPadding = 80;
     var y_labelPadding = 10;
@@ -199,10 +186,65 @@ SuicideChart.prototype.updateVis = function() {
             return (percentScale(d.percentage)- y_labelPadding);
         })
         .text(function(d) {
-            return (d.percentage + "%");
+            return (d.percentage);
         });
 
-    bar.exit().remove();
     label.exit().remove();
+    */
 
+}
+
+SuicideChart.prototype.onSelectionChange = function(button){
+    var vis = this;
+
+    if (button == 1) {
+        vis.cells
+            .transition()
+            .duration(2000)
+            .attr("opacity", 0);
+        vis.cells2
+            .transition()
+            .duration(3000)
+            .attr("opacity",function(d){
+                if(d.MHSUITHK == 1){
+                    return 0;
+                }
+                else
+                    return 0.5;
+            })
+        vis.cells3
+            .transition()
+            .duration(4000)
+            .attr("opacity",function(d){
+                if(d.MHSUITHK == 1){
+                    return 0;
+                }
+                else
+                    return 0.9;
+            })
+    }
+
+    else if (button == 2)
+    {
+        vis.cells2
+            .transition()
+            .duration(2000)
+            .attr("opacity",0);
+
+        vis.cells3
+            .transition()
+            .duration(3000)
+            .attr("opacity",function(d){
+                if(d.MHSUIPLN == 1){
+                    return 0;
+                }
+                else
+                    return 0.9;
+            })
+    }
+    else if (button == 3)
+        vis.cells3
+            .transition()
+            .duration(2000)
+            .attr("opacity",0);
 }
