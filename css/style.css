@@ -1,4 +1,31 @@
 /*
  * Aggregate Chart
  */
+body {
+    font-family: 'Roboto', sans-serif;
+}
 
+h1 {
+    font-weight: 100;
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+h1 .divider {
+    margin: 0 8px;
+}
+
+h1 .sub-headline {
+    color: #888;
+    font-weight: 300;
+}
+
+img{
+    width: 160px;
+    margin-left: 30px;
+}
+
+button{
+    margin-left:50px;
+}
