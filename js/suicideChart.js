@@ -91,14 +91,14 @@ SuicideChart.prototype.updateVis = function() {
         .data(vis.displayData_SuicideThink);
 
     var circlesPerRow = 7;
-    var radius = 10;
+    var radius = 5;
 
    vis.cells.enter().append("rect")
         .attr("class", "suicideCells")
         .attr("x", function (d, index) { return (index%circlesPerRow)*2*radius + radius; })
         .attr("y", function (d, index) { return Math.floor(index/circlesPerRow)*2*radius + radius; })
-        .attr("width", 10)
-        .attr("height",10)
+        .attr("width", 5)
+        .attr("height",5)
         .attr("fill", "red")
         .attr("opacity", 0.2);
 
