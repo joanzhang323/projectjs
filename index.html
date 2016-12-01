@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-anchor,.fa-coffee {font-size:200px}
+</style>
+
+<!-- CSS libraries -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Custom CSS code -->
+<link rel="stylesheet" href="css/style.css">
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <ul class="w3-navbar w3-black w3-card-2 w3-left-align w3-large">
+        <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+            <a class="w3-padding-large w3-hover-white w3-large w3-black" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        </li>
+        <li><a href="#" class="w3-padding-large w3-white">Home</a></li>
+        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Link 1</a></li>
+        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Link 2</a></li>
+        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Link 3</a></li>
+        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Link 4</a></li>
+    </ul>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+        <ul class="w3-navbar w3-left-align w3-large w3-black">
+            <li><a class="w3-padding-large" href="#">Link 1</a></li>
+            <li><a class="w3-padding-large" href="#">Link 2</a></li>
+            <li><a class="w3-padding-large" href="#">Link 3</a></li>
+            <li><a class="w3-padding-large" href="#">Link 4</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-black w3-center w3-padding-128">
+    <h1 class="w3-margin w3-jumbo">Asian American Mental Health</h1>
+    <p class="w3-xlarge">Demystifying the Model Minority Myth</p>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-third">
+            <h1>Lorem Ipsum</h1>
+            <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+
+            <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+        <div class="w3-third w3-center">
+                    <!-- Filter for Aggregate Chart -->
+                    <div class="col-md-2" id="filters">
+                        <div class="checkbox" id="ageFilter" onchange="selectionChanged()">
+                            Age:<br>
+                            <label><input type="checkbox" name="18" class="ageCheckBox" value="7" />18</label><br>
+                            <label><input type="checkbox" name="19" class="ageCheckBox" value="8" />19</label><br>
+                            <label><input type="checkbox" name="20" class="ageCheckBox" value="9" />20</label><br>
+                            <label><input type="checkbox" name="21" class="ageCheckBox" value="10" />21</label><br>
+                            <label><input type="checkbox" name="22-23" class="ageCheckBox" value="11" />22-23</label>
+                        </div>
+
+                        <div class="checkbox" id="genderFilter" onchange="selectionChanged()">
+                            Gender:<br>
+                            <label><input type="checkbox" name="male" class="genderCheckBox" value="1" />Male</label><br>
+                            <label><input type="checkbox" name="female" class="genderCheckBox" value="2" />Female</label><br>
+                        </div>
+
+                    </div>
+        </div>
+        <div class="w3-third w3-center">
+                    <!-- Visualization placeholder -->
+                    <div class="col-md-10" id="aggregate-chart"></div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+    <div class="w3-content">
+        <h1 class="w3-center">Lorem Ipsum</h1>
+        <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+
+        <div class="col-md-2" id="individual-image"></div>
+        <div class="col-md-10" id="individual-chart"></div>
+
+    </div>
+</div>
+
+<!-- Third Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+        <h1 class="w3-center">Lorem Ipsum</h1>
+
+        <div class="col-md-10" id="physical-chart"></div>
+
+    </div>
+</div>
+
+
+<!-- Fourth Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+    <div class="w3-content">
+        <h1 class="w3-center">Lorem Ipsum</h1>
+
+        <div class="col-md-10" id="suicide-chart">
+            <button type="button" class="btn btn-primary" id = "btn1" value= "1" onclick="intervene(value)">Talk to a Friend</button>
+            <button type="button" class="btn btn-primary"  id = "btn2" value = "2" onclick="intervene(value)">Seek Professional Treatment</button>
+            <button type="button" class="btn btn-primary"  id = "btn3" value = "3" onclick="intervene(value)">Call the Suicide Hotline</button>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+    <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+
+<!-- Load JS libraries -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/queue.v1.min.js"></script>
+<script src="js/d3.min.js"></script>
+
+<!-- Visualization objects -->
+<script src="js/aggregateChart.js"></script>
+<script src="js/individualChart.js"></script>
+<script src="js/physicalChart.js"></script>
+<script src="js/suicideChart.js"></script>
+
+<!-- Load data, create visualizations -->
+<script src="js/main.js"></script>
+
+<script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+
+
+
+</body>
+</html>
