@@ -27,47 +27,45 @@
         <h1><b>Asian American Mental Health:</b></h1>
         <p>Demystifying the Model Minority Myth</p>
         <p class="view"><a href="https://github.com/joanzhang323/projectjs">View the Project on GitHub <small>joanzhang323/projectjs</small></a></p>
-        
       </header>
+      
         <div class="container-fluid">
-        <div class="row">
+          <div class="row">
             <!-- Filter for Aggregate Chart -->
             <div class="col-md-2" id="filters">
-
-                <div class="checkbox" id="ageFilter" onchange="selectionChanged()">
-                    Age:<br>
-                    <label><input type="checkbox" name="18" class="ageCheckBox" value="7" />18</label><br>
-                    <label><input type="checkbox" name="19" class="ageCheckBox" value="8" />19</label><br>
-                    <label><input type="checkbox" name="20" class="ageCheckBox" value="9" />20</label><br>
-                    <label><input type="checkbox" name="21" class="ageCheckBox" value="10" />21</label><br>
-                    <label><input type="checkbox" name="22-23" class="ageCheckBox" value="11" />22-23</label>
-                </div>
-
-                <div class="checkbox" id="genderFilter" onchange="selectionChanged()">
-                    Gender:<br>
-                    <label><input type="checkbox" name="male" class="genderCheckBox" value="1" />Male</label><br>
-                    <label><input type="checkbox" name="female" class="genderCheckBox" value="2" />Female</label><br>
-                </div>
-
-            </div>
-           <!-- Visualization placeholder -->
-            <div class="col-md-10" id="aggregate-chart"></div>
-            <div class="row">
-                <div class="col-md-2" id="individual-image"></div>
-                <div class="col-md-10" id="individual-chart"></div>
-             </div>
-             <div class="row">
-                 <div class="col-md-10" id="physical-chart"></div>
+              <div class="checkbox" id="ageFilter" onchange="selectionChanged()">
+                Age:<br>
+                <label><input type="checkbox" name="18" class="ageCheckBox" value="7" />18</label><br>
+                <label><input type="checkbox" name="19" class="ageCheckBox" value="8" />19</label><br>
+                <label><input type="checkbox" name="20" class="ageCheckBox" value="9" />20</label><br>
+                <label><input type="checkbox" name="21" class="ageCheckBox" value="10" />21</label><br>
+                <label><input type="checkbox" name="22-23" class="ageCheckBox" value="11" />22-23</label>
               </div>
-              <div class="row">
-                  <div class="col-md-10" id="suicide-chart">
-                    <button type="button" class="btn btn-primary" id = "btn1" value= "1" onclick="intervene(value)">Talk to a Friend</button>
-                      <button type="button" class="btn btn-primary"  id = "btn2" value = "2" onclick="intervene(value)">Seek Professional Treatment</button>
-                      <button type="button" class="btn btn-primary"  id = "btn3" value = "3" onclick="intervene(value)">Call the Suicide Hotline</button>
-                </div>
+              <div class="checkbox" id="genderFilter" onchange="selectionChanged()">
+                Gender:<br>
+                <label><input type="checkbox" name="male" class="genderCheckBox" value="1" />Male</label><br>
+                <label><input type="checkbox" name="female" class="genderCheckBox" value="2" />Female</label><br>
+              </div>
             </div>
-        </div>
-    </div>
+            <!-- Visualization placeholder -->
+            <div class="col-md-10" id="aggregate-chart"></div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-2" id="individual-image"></div>
+            <div class="col-md-10" id="individual-chart"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-10" id="physical-chart"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-10" id="suicide-chart">
+              <button type="button" class="btn btn-primary" id = "btn1" value= "1" onclick="intervene(value)">Talk to a Friend</button>
+              <button type="button" class="btn btn-primary"  id = "btn2" value = "2" onclick="intervene(value)">Seek Professional Treatment</button>
+              <button type="button" class="btn btn-primary"  id = "btn3" value = "3" onclick="intervene(value)">Call the Suicide Hotline</button>
+            </div>
+          </div>
+      </div>
     <!-- Load JS libraries -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
