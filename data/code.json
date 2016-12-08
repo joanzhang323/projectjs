@@ -1,19 +1,93 @@
 {
-  "AGE2" : {
-    "name" : "Age",
-    "code" : {
-      "7" : "18",
-      "8" : "19",
-      "9" : "20",
-      "10" : "21",
-      "11" : "22-23"
+  "NEWRACE2" : {
+    "1": "White",
+    "2": "Black",
+    "3": "Native American",
+    "4": "Hispanic",
+    "5": "Asian American",
+    "6": "Pacific Islander"
+  },
+  "RACEGRP": {
+    "1": "White",
+    "2": "Black",
+    "3": "Native American",
+    "4": "Hispanic",
+    "5": "AAPI"
+  },
+  "AGE2": {
+    "name": "Age",
+    "code": {
+      "7": [18,18],
+      "8": [19,19],
+      "9": [20,20],
+      "10": [21,21],
+      "11": [22,23],
+      "12": [24,25],
+      "13": [26,29],
+      "14": [30,34],
+      "15": [35,49],
+      "16": [50,64],
+      "17": [65,100]
     }
   },
-  "IRSEX" : {
-    "name" : "Sex",
-    "code" : {
-      "1" : "Male",
-      "2" : "Female"
+  "AGECAT": {
+    "name": "Age Categories",
+    "code": {
+      "1": [12, 17],
+      "2": [18, 23],
+      "3": [24, 29],
+      "4": [30, 34],
+      "5": [35, 49],
+      "6": [50, 64],
+      "7": [65, 100]
+    }
+  },
+  "IRSEX": {
+    "name": "Sex",
+    "code": {
+      "1": "Male",
+      "2": "Female"
+    }
+  },
+  "EDUCCAT2": {
+    "name": "Education Completed",
+    "code": {
+      "1": "Less than high school",
+      "2": "High school grad",
+      "3": "Some College",
+      "4": "College grad",
+      "5": "12-17 year olds"
+    }
+  },
+  "EDUCCATN2": {
+    "name": "Current Grade",
+    "code": {
+      "1": "5th grade or lower",
+      "2": "6th grade",
+      "3": "7th grade",
+      "4": "8th grade",
+      "5": "9th grade",
+      "6": "10th grade",
+      "7": "11th grade",
+      "8": "12th grade",
+      "9": "College 1st year",
+      "10": "College 2nd or 3rd year",
+      "11": "College 4th year or higher",
+      "12": "Missing",
+      "13": "LEGITIMATE SKIP"
+    }
+  },
+  "IRFAMIN3": {
+    "name": "Total Family Income",
+    "code": {
+      "1": "Less than $10,000",
+      "2": "$10,000 - $19,999",
+      "3": "$20,000 - $29,999",
+      "4": "$30,000 - $39,999",
+      "5": "$40,000 - $49,999",
+      "6": "$50,000 - $59,999",
+      "7": "$60,000 - $74,999",
+      "8": "$75,000 or more"
     }
   }
 }

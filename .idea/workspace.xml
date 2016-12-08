@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bfb9ff9b-ac28-42d0-9d6d-e5e3471c670e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/DataJS.csv" afterPath="$PROJECT_DIR$/data/DataJS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/code.json" afterPath="$PROJECT_DIR$/data/code.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/aggregateChart.js" afterPath="$PROJECT_DIR$/js/aggregateChart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
-    </list>
+    <list default="true" id="bfb9ff9b-ac28-42d0-9d6d-e5e3471c670e" name="Default" comment="" />
     <ignored path="projectjs.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -58,10 +50,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="200">
               <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
-              <folding>
-                <marker date="1480372426000" expanded="true" signature="429:504" ph="/*...*/" />
-                <marker date="1480372426000" expanded="true" signature="552:750" ph="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -303,12 +292,12 @@
       <workItem from="1479070883906" duration="4092000" />
       <workItem from="1479140092670" duration="16479000" />
       <workItem from="1480372844374" duration="23000" />
-      <workItem from="1480372985672" duration="14000" />
+      <workItem from="1480372985672" duration="90000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21845000" />
+    <option name="totallyTimeSpent" value="21921000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -370,10 +359,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1480372426000" expanded="true" signature="429:504" ph="/*...*/" />
-            <marker date="1480372426000" expanded="true" signature="552:750" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -415,10 +401,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1480372426000" expanded="true" signature="429:504" ph="/*...*/" />
-            <marker date="1480372426000" expanded="true" signature="552:750" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -550,10 +533,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
-          <folding>
-            <marker date="1480372426000" expanded="true" signature="429:504" ph="/*...*/" />
-            <marker date="1480372426000" expanded="true" signature="552:750" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
