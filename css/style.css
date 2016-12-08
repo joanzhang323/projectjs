@@ -1,6 +1,6 @@
 /*
  * Aggregate Chart
- */
+
 body {
     font-family: 'Roboto', sans-serif;
 }
@@ -28,4 +28,39 @@ img{
 
 button{
     margin-left:50px;
+}
+*/
+
+/*
+ * Racial Comparison Chart
+ */
+
+.raceLabel {
+    font-size: smaller;
+    align-content: center;
+}
+
+/*
+ * Filters for Racial Comparison Chart
+ */
+
+#aapiButton {
+    background-color: #4caf50; /* Green */
+    border: 1px solid green;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    float: left;
+}
+
+#aapiButton:hover {
+    background-color: #3e8e41;
+}
+
+#aapiButton.active {
+    background-color: #14598e;
 }
