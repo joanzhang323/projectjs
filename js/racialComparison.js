@@ -25,7 +25,7 @@ RacialComparison = function(_parentElement, _data, _meta) {
 
 RacialComparison.prototype.initVis = function() {
     var vis = this;
-    console.log("initvis");
+
     vis.margin = { top: 20, right: 10, bottom: 20, left: 10 };
 
     vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
@@ -50,7 +50,6 @@ RacialComparison.prototype.initVis = function() {
 RacialComparison.prototype.wrangleData = function() {
     var vis = this;
     var indexHeight = 6;
-    console.log("wrangle");
 
     // Initialize displayData;
     vis.displayData = [];
@@ -67,6 +66,8 @@ RacialComparison.prototype.wrangleData = function() {
         data: []
     };
     vis.displayData.push(aapiDefault);
+
+    console.log(vis.filteredData.length);
 
     // Add up number of people with mental health and not
     var nestedByRace = d3.nest()
@@ -134,17 +135,11 @@ RacialComparison.prototype.updateVis = function() {
     var vis = this;
     var radius = 5,
         circlesPerRow = 10,
-        circlesPerColumn = 60;
-    console.log("update");
+        circlesPerColumn = 60,
+        spaceBetweenCharts = radius * circlesPerRow * 2.5,
+        numOfCharts = vis.displayData.length;
 
-
-    // Sort by smallest to greatest percentage
-    vis.displayData.sort(function (a,b) { return a.percent - b.percent; });
-    // Debug - console.log(vis.displayData);
-
-
-    console.log(vis.displayData);
-
+/*
     // If AAPi button is not pressed, then display only AAPI. Else, display, AAPI, AA, and PI.
     var objToRemove = [];
     var objRemoved = [];
@@ -160,9 +155,7 @@ RacialComparison.prototype.updateVis = function() {
             objRemoved.push(vis.displayData.splice(code,1));
         });
     }
-    console.log(objRemoved);
-    console.log(vis.displayData);
-
+*/
 
     // Append group-elements for the visualizations for each race
     var raceChart = vis.svg.selectAll(".raceChart")
@@ -177,7 +170,7 @@ RacialComparison.prototype.updateVis = function() {
         .transition()
         .duration(1500)
         .attr("transform", function (d, index) {
-            return "translate(" + (index * radius * circlesPerRow * 2.5) + ",0)";
+            return "translate(" + (index * spaceBetweenCharts) + ",0)";
         });
 
     // Append group-elements for each cell in race chart
@@ -210,10 +203,44 @@ RacialComparison.prototype.updateVis = function() {
         .attr("y", vis.height + 15)
         .attr("x", radius*circlesPerRow);
 
-
+/*
     // Add AA and PI back if removed earlier
     objRemoved.forEach(function (obj) { vis.displayData.push(obj[0]); });
-    console.log(vis.displayData);
+*/
+
+
+    // Append line to indicate national mental health line
+    var natMH = vis.svg.selectAll(".natMH")
+        .data([nationalMHAvg]);
+
+    var natMHEnter = natMH.enter().append("g")
+        .attr("class", "natMH");
+
+    natMH.exit().remove();
+
+    var natMHLine = natMHEnter.append("line")
+        .attr("class", "natMHLine")
+        .attr("x1", 0)
+        .attr("y1", vis.height)
+        .attr("y2", vis.height)
+        .attr("stroke-width", 2)
+        .attr("stroke", "black");
+
+    natMH.select(".natMHLine")
+        .attr("x2", spaceBetweenCharts*numOfCharts)
+        .attr("transform", function (d) {
+            return "translate(0," + (-1*vis.height*d) + ")";
+        });
+
+
+    var natMHLineLabel = natMHEnter.append("text")
+        .attr("class", "natMHLineLabel");
+
+    natMHLine.select(".natMHLineLabel")
+        .attr("x", spaceBetweenCharts*numOfCharts + 7)
+        .attr("y", function (d) { return vis.height - vis.height*d + 5; })
+        .text(function (d) { return "National Average: " + (d*100).toFixed(2) + "%";});
+
 }
 
 
@@ -223,7 +250,8 @@ RacialComparison.prototype.updateVis = function() {
 
 RacialComparison.prototype.onSelectionChange = function(checked) {
     var vis = this;
-    console.log("onselectionchange");
+
+    console.log(checked);
 
     /*
      * Debug

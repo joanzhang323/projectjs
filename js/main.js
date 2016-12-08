@@ -7,7 +7,10 @@ var allData = [];
 
 // Variable for the visualization instance
 var racialComparison;
+
+// Other variables
 var codeBook;
+var nationalMHAvg = 8021/53312;
 
 
 // Counter for AAPI Button
